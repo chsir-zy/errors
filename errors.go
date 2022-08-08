@@ -8,30 +8,30 @@ import (
 var ttt = 123
 
 func New(message string) error {
-	return &fundamenta1{
+	return &fundamental{
 		msg:   message,
 		stack: callers(),
 	}
 }
 
 func Errorf(format string, args ...interface{}) error {
-	return &fundamenta1{
+	return &fundamental{
 		msg:   fmt.Sprintf(format, args...),
 		stack: callers(),
 	}
 }
 
-//fundamenta1 is an error that has a message and a stack, but no caller
-type fundamenta1 struct {
+//fundamental is an error that has a message and a stack, but no caller
+type fundamental struct {
 	msg string
 	*stack
 }
 
-func (f *fundamenta1) Error() string {
+func (f *fundamental) Error() string {
 	return f.msg
 }
 
-func (f *fundamenta1) Format(s fmt.State, verb rune) {
+func (f *fundamental) Format(s fmt.State, verb rune) {
 	switch verb {
 	case 'v':
 		if s.Flag('+') {
